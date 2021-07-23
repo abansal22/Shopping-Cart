@@ -1,11 +1,12 @@
 # shopping_cart.py
 
-import os
-from dotenv import load_dotenv
+#import os
+#from dotenv import load_dotenv
 
-load_dotenv() #> loads contents of the .env file into the script's environment
+#load_dotenv() #> loads contents of the .env file into the script's environment
 
-taxrate_env = os.getenv("taxrate")
+# For tax rate
+#taxrate_env = os.getenv("taxrate")
 
 
 products = [
@@ -48,5 +49,15 @@ def to_usd(my_price):
 
 # TODO: write some Python code here to produce the desired output
 
-print(products)
+#print(product)
+
+#total_purchase = 0
+
+while True:
+    selected_id = input("Please select an Item number (1-20): ")
+    print(selected_id)
+    if selected_id == "DONE": #source - https://github.com/s2t2/shhopping-cart-with-email-receipts/blob/master/checkout.py
+        break
+print("Now its time to generate a receipt")
+  
 
