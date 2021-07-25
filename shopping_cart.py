@@ -55,22 +55,26 @@ products = [
 #Information Capture / Input
 
 total_purchase = 0
-
+selected_ids = []
 while True:
     selected_id = input("Please select an Item number (1-20): ") # (string type)
-    #> "DONE"
     if selected_id == "DONE": #source - https://github.com/s2t2/shhopping-cart-with-email-receipts/blob/master/checkout.py
         break
     else:
-        matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
-        matching_product = matching_products[0]
-        total_purchase = total_purchase + matching_product["price"]
-        print("SELECTED PRODUCT: " + matching_product["name"] + " " + str(matching_product["price"]))
+        selected_ids.append(selected_id)
+   
 
+print(selected_ids) 
+
+for selected_id in selected_ids:
+      matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
+      matching_product = matching_products[0]
+      total_purchase = total_purchase + matching_product["price"]
+      print("SELECTED PRODUCT: " + matching_product["name"] + " " + str(matching_product["price"]))
 
 print("TOTAL PRICE: " + str(total_purchase)) #TODO USD price
 
-    #print(selected_id)
+    #print(selected_ids)
 
     #else:
     #    for x in products:
@@ -80,6 +84,7 @@ print("TOTAL PRICE: " + str(total_purchase)) #TODO USD price
 
 
 #INFO DISPLAY / OUTPUT
+
 #print("you selected", len(selected_products), "products")
 
 #print("Now its time to generate a receipt")
