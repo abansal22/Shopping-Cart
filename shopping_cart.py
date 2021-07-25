@@ -51,9 +51,11 @@ products = [
 # TODO: write some Python code here to produce the desired output
 
 
-#total_purchase = 0
 
 #Information Capture / Input
+
+total_purchase = 0
+
 while True:
     selected_id = input("Please select an Item number (1-20): ") # (string type)
     #> "DONE"
@@ -62,9 +64,14 @@ while True:
     else:
         matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
         matching_product = matching_products[0]
+        total_purchase = total_purchase + matching_product["price"]
         print("SELECTED PRODUCT: " + matching_product["name"] + " " + str(matching_product["price"]))
+
+
+print("TOTAL PRICE: " + str(total_purchase)) #TODO USD price
+
     #print(selected_id)
-    
+
     #else:
     #    for x in products:
     #        if str(x["id"]) == str(selected_id):
