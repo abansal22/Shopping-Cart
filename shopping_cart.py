@@ -60,6 +60,11 @@ while True:
     selected_id = input("Please select an Item number (1-20): ") # (string type)
     if selected_id == "DONE": #source - https://github.com/s2t2/shhopping-cart-with-email-receipts/blob/master/checkout.py
         break
+    #elif type(int(selected_id)) != int: ---> #exception management for text string   
+    #    print("Opps that is not a valid product ID, please try again") ---> #exception management for text string
+
+    elif int(selected_id) > 20 or int(selected_id) < 1: #exception management for different ID#s
+        print("Opps that is not a valid product ID, please try again") #exception management for different ID#s
     else:
         selected_ids.append(selected_id)
 #Output Data
