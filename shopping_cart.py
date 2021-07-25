@@ -1,12 +1,12 @@
 # shopping_cart.py
 
-#import os
-#from dotenv import load_dotenv
+import os
+from dotenv import load_dotenv
 
-#load_dotenv() #> loads contents of the .env file into the script's environment
+load_dotenv() #> loads contents of the .env file into the script's environment
 
 # For tax rate
-#taxrate_env = os.getenv("taxrate")
+taxrate_env = os.getenv("taxrate")
 
 
 products = [
@@ -35,17 +35,16 @@ products = [
 #print(product)
 
 
-#def to_usd(my_price):
-    #"""
-    #Converts a numeric value to usd-formatted string, for printing and display purposes.
+def to_usd(my_price):
+    """
+    Converts a numeric value to usd-formatted string, for printing and display purposes.
+    Param: my_price (int or float) like 4000.444444
 
-    #Param: my_price (int or float) like 4000.444444
+    Example: to_usd(4000.444444)
 
-    #Example: to_usd(4000.444444)
-
-    #Returns: $4,000.44
-    #"""
-    #return f"${my_price:,.2f}" #> $12,000.71
+    Returns: $4,000.44
+    """
+    return f"${my_price:,.2f}" #> $12,000.71
 
 
 # TODO: write some Python code here to produce the desired output
@@ -54,36 +53,43 @@ products = [
 
 #Information Capture / Input
 
-total_purchase = 0
+subtotal = 0
 selected_ids = []
+
 while True:
     selected_id = input("Please select an Item number (1-20): ") # (string type)
     if selected_id == "DONE": #source - https://github.com/s2t2/shhopping-cart-with-email-receipts/blob/master/checkout.py
         break
     else:
         selected_ids.append(selected_id)
-   
+#Output Data
+print("")   #HEADING
+print("----------------------------") #HEADING
+print("GOOD FOODS GROCERY") #HEADING
+print("www.GFG.com") #HEADING
+print("1888-222-5555") #HEADING
+print("----------------------------") #HEADING
+# print(selected_ids) 
 
-print(selected_ids) 
+print("SELECTED ITEMS") #HEADING
 
-for selected_id in selected_ids:
-      matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
+for x in selected_ids:
+      matching_products = [p for p in products if str(p["id"]) == str(x)]
       matching_product = matching_products[0]
-      total_purchase = total_purchase + matching_product["price"]
-      print("SELECTED PRODUCT: " + matching_product["name"] + " " + str(matching_product["price"]))
+      subtotal = subtotal + matching_product["price"]
+      print("..." + matching_product["name"] + " " + to_usd(matching_product["price"]))
 
-print("TOTAL PRICE: " + str(total_purchase)) #TODO USD price
+print("")
+print("SUBTOTAL: " + to_usd(subtotal)) #TODO USD price
+tax = subtotal*float(taxrate_env)
+print("TAX: " + to_usd(tax))
+total_purchase = subtotal + tax
+print("TOTAL: " + to_usd(total_purchase))
+print("----------------------------") #FOOTING
+print("THANK YOU FOR SHOPPING AT GOOD FOODS GROCERY") #FOOTING
+print("----------------------------") #FOOTING
+  
 
-    #print(selected_ids)
-
-    #else:
-    #    for x in products:
-    #        if str(x["id"]) == str(selected_id):
-    #            print(x)
-    #            selected_products.append(x)
-
-
-#INFO DISPLAY / OUTPUT
 
 #print("you selected", len(selected_products), "products")
 
