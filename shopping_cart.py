@@ -6,8 +6,9 @@ from dotenv import load_dotenv
 load_dotenv() #> loads contents of the .env file into the script's environment
 
 # For tax rate
-taxrate_env = os.getenv("taxrate")
+taxrate_env = os.getenv("TAXRATE") #<-- Telling to search for variable in .env
 
+import datetime
 
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
@@ -60,8 +61,8 @@ while True:
     selected_id = input("Please select an Item number (1-20): ") # (string type)
     if selected_id == "DONE": #source - https://github.com/s2t2/shhopping-cart-with-email-receipts/blob/master/checkout.py
         break
-    #elif type(int(selected_id)) != int: ---> #exception management for text string   
-    #    print("Opps that is not a valid product ID, please try again") ---> #exception management for text string
+    elif not selected_id.isnumeric():  #exception management for text string   
+        print("Opps that is not a valid product ID, please try again") #---> #exception management for text string
 
     elif int(selected_id) > 20 or int(selected_id) < 1: #exception management for different ID#s
         print("Opps that is not a valid product ID, please try again") #exception management for different ID#s
@@ -73,6 +74,8 @@ print("----------------------------") #HEADING
 print("GOOD FOODS GROCERY") #HEADING
 print("www.GFG.com") #HEADING
 print("1888-222-5555") #HEADING
+print("----------------------------") #HEADING
+print('CHECKOUT AT: {:%Y-%m-%d %H:%M}'.format(datetime.datetime.now())) #TimeStamp source: https://stackoverflow.com/questions/26455616/how-can-i-create-basic-timestamps-or-dates-python-3-4
 print("----------------------------") #HEADING
 # print(selected_ids) 
 
